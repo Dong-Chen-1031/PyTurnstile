@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/pypi/v/pyturnstile?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
 <a href="https://pypi.org/project/pyturnstile" target="_blank">
-    <img src="https://img.shields.io/badge/Python-3.8%2B?color=%2334D058&logo=Python&logoColor=rgb(255%2C%20255%2C%20255)" alt="Supported Python versions">
+    <img src="https://img.shields.io/badge/Python-3.8%2B-%2334D058?logo=Python&logoColor=rgb(255%2C%20255%2C%20255)" alt="Supported Python versions">
 </a>
 <a href="https://docs.astral.sh/ruff/" target="_blank">
     <img src="https://camo.githubusercontent.com/d6c7524504b7d886a9d34c11f44b9d31b2de1a579325b42e932744c4575a063b/68747470733a2f2f696d672e736869656c64732e696f2f656e64706f696e743f75726c3d68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f61737472616c2d73682f727566662f6d61696e2f6173736574732f62616467652f76322e6a736f6e" alt="Ruff" />
