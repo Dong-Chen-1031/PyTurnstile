@@ -33,7 +33,7 @@
 
 PyTurnstile simplifies Cloudflare Turnstile token validation. It handles all communication with Cloudflare's API.
 
-<img src="https://github.com/Dong-Chen-1031/pyturnstile/blob/main/img/turnstile_verification.svg?raw=true" width="600" alt="Sequence diagram showing how PyTurnstile works" />
+<img src="https://github.com/Dong-Chen-1031/pyturnstile/blob/main/img/turnstile_verification.svg?raw=true" alt="Sequence diagram showing how PyTurnstile works" />
 
 > Learn more at: https://developers.cloudflare.com/turnstile/
 
