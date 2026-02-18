@@ -33,24 +33,7 @@
 
 PyTurnstile simplifies Cloudflare Turnstile token validation. It handles all communication with Cloudflare's API.
 
-```mermaid
-sequenceDiagram
-    participant Frontend as 🖥️ Frontend
-    participant Backend as 🐍 Your Backend
-    participant Cloudflare as ☁️ Cloudflare
-
-    Frontend->>Cloudflare: 1. Complete challenge
-    Cloudflare-->>Frontend: 2. Return token
-    Frontend->>Backend: 3. Submit form + token
-
-    rect rgb(50, 179, 238)
-        Note over Backend,Cloudflare: 🔍 PyTurnstile handles this
-        Backend->>Cloudflare: 4. Verify token
-        Cloudflare-->>Backend: 5. Valid ✅ / Invalid ❌
-    end
-
-    Backend->>Frontend: 6. Allow / Deny request
-```
+<img src="https://github.com/Dong-Chen-1031/pyturnstile/blob/main/img/turnstile_verification.svg?raw=true" alt="Sequence diagram showing how PyTurnstile works" />
 
 > Learn more at: https://developers.cloudflare.com/turnstile/
 
@@ -72,7 +55,8 @@ pip install pyturnstile
 
 ## Usage
 
-> [!TIP]
+> ### 💡 TIP
+>
 > You can follow [this documentation](https://developers.cloudflare.com/turnstile/get-started/) and create your own Turnstile secret key at the [Cloudflare Turnstile dashboard](https://dash.cloudflare.com/?to=/:account/turnstile).
 
 ### Quick Start
@@ -117,7 +101,8 @@ if response.success:
 
 ### Optional Parameters
 
-> [!NOTE]
+> ### ℹ️ NOTE
+>
 > For more details on all available parameters, see the [Cloudflare documentation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#required-parameters)
 
 ```python
@@ -133,7 +118,8 @@ response = turnstile.validate(
 
 ### Response Object
 
-> [!NOTE]
+> ### ℹ️ NOTE
+>
 > For more details on all response fields, see the [Cloudflare documentation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#response-fields)
 
 The `TurnstileResponse` object contains:

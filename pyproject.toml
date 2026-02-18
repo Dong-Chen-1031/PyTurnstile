@@ -2,7 +2,7 @@
 name = "PyTurnstile"
 version = "0.2.0"
 description = "A Python library for validating Cloudflare Turnstile tokens with async and sync support"
-readme = "README.md"
+readme = "README_PYPI.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
 keywords = ["Cloudflare", "turnstile", "captcha", "validation"]
