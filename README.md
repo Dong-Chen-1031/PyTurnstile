@@ -26,8 +26,9 @@
 ## Features
 
 - 🔄 Async & Sync Support
-- 🚀 Simple API
-- 📦 Lightweight - Only requires `httpx`
+- 🚀 Simple & Intuitive API
+- ✅ Type-safe response handling
+- 🛡️ Enhanced security validation
 
 ## What is PyTurnstile?
 
