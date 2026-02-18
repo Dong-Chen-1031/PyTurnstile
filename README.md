@@ -42,7 +42,7 @@ sequenceDiagram
     Cloudflare-->>Frontend: 2. Return token
     Frontend->>Backend: 3. Submit form + token
 
-    rect rgb(14, 165, 233)
+    rect rgb(50, 179, 238)
         Note over Backend,Cloudflare: 🔍 PyTurnstile handles this
         Backend->>Cloudflare: 4. Verify token
         Cloudflare-->>Backend: 5. Valid ✅ / Invalid ❌
@@ -83,9 +83,11 @@ PyTurnstile provides two ways to validate tokens:
 ```python
 from pyturnstile import Turnstile
 
-turnstile = Turnstile(secret="your-secret-key") # Initialize with your secret key
+# Initialize with your secret key
+turnstile = Turnstile(secret="your-secret-key")
 
-response = await turnstile.async_validate(token="user-token-from-frontend") # Validate a token (asynchronously)
+# Validate a token (asynchronously)
+response = await turnstile.async_validate(token="user-token-from-frontend")
 
 # or validate synchronously
 # response = turnstile.validate(token="user-token-from-frontend")
@@ -99,10 +101,11 @@ if response.success:
 ```python
 from pyturnstile import validate, async_validate
 
+# Validate a token (asynchronously)
 response = await async_validate(
     token="user-token-from-frontend",
     secret="your-secret-key"
-)  # Validate a token (asynchronously)
+)
 
 # or validate synchronously
 # response = validate(
@@ -136,13 +139,13 @@ response = turnstile.validate(
 The `TurnstileResponse` object contains:
 
 ```python
-response.success         # bool: Whether validation succeeded
-response.error_codes     # list: Error codes (if any)
-response.challenge_ts    # str: ISO timestamp of challenge completion
-response.hostname        # str: Hostname where challenge was served
-response.action          # str: Custom action identifier
-response.cdata           # str: Custom data payload
-response.metadata        # dict: Additional metadata
+response.success                   # bool: Whether validation succeeded
+response.error_codes               # list[TurnstileErrorCodes]: Error codes (if any)
+response.challenge_ts              # str: ISO timestamp of challenge completion
+response.hostname                  # str: Hostname where challenge was served
+response.action                    # str: Custom action identifier
+response.cdata                     # str: Custom data payload from client-side
+response.metadata["ephemeral_id"]  # Device fingerprint ID (Enterprise only)
 ```
 
 ## Contributing

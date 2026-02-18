@@ -14,8 +14,9 @@ class Turnstile:
     This class provides both synchronous and asynchronous methods to validate
     Turnstile tokens with Cloudflare's verification API.
 
-    Attributes:
-        secret: Your Cloudflare Turnstile secret key
+    Methods:
+        validate: Synchronously validate a Turnstile token.
+        async_validate: Asynchronously validate a Turnstile token.
 
     Example:
         Synchronous usage:
@@ -52,6 +53,8 @@ class Turnstile:
             TurnstileResponse: The response from the Turnstile API
         Raises:
             TurnstileValidationError: If the validation fails due to an API error or network issue
+
+        For more details on all available parameters, see the [Cloudflare documentation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#required-parameters)
         """
         return core.validate(token, self.secret, remoteip, idempotency_key, timeout)
 
@@ -73,6 +76,8 @@ class Turnstile:
             TurnstileResponse: The response from the Turnstile API
         Raises:
             TurnstileValidationError: If the validation fails due to an API error or network issue
+
+        For more details on all available parameters, see the [Cloudflare documentation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#required-parameters)
         """
         return await core.async_validate(
             token, self.secret, remoteip, idempotency_key, timeout

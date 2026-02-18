@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Any, Literal, Optional
 
 import httpx
 
@@ -20,11 +20,19 @@ TurnstileErrorCodes = Literal[
     "timeout-or-duplicate",
     "internal-error",
 ]
-"""Literal type for Turnstile error codes returned by the API."""
+"""
+Literal type for Turnstile error codes returned by the API.
+
+For more details on all Turnstile error codes, see the [Cloudflare documentation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#error-codes-reference)
+"""
 
 
 class TurnstileResponse:
-    """Represents the response from Cloudflare's Turnstile validation API."""
+    """
+    Represents the response from Cloudflare's Turnstile validation API.
+
+    For more details on all response fields, see the [Cloudflare documentation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#response-fields)
+    """
 
     action: str
     """Custom action identifier from client-side"""
@@ -36,8 +44,8 @@ class TurnstileResponse:
     """Array of error codes (if validation failed)"""
     hostname: str
     """Hostname where the challenge was served"""
-    metadata: dict
-    """metadata.ephemeral_id: Device fingerprint ID (Enterprise only)"""
+    metadata: dict[str, Any]
+    """Additional metadata returned by the API, including 'ephemeral_id' for device fingerprinting (Enterprise only)"""
     success: bool
     """Boolean indicating if validation was successful"""
 
@@ -98,6 +106,8 @@ async def async_validate(
 
     Returns:
         TurnstileResponse: The response from the Turnstile API
+
+    For more details on all available parameters, see the [Cloudflare documentation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#required-parameters)
     """
     url = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
 
@@ -133,6 +143,11 @@ def validate(
         token: The token from the client-side widget
         remoteip: (Optional) The visitor's IP address
         idempotency_key: (Optional) UUID for retry protection
+
+    Returns:
+        TurnstileResponse: The response from the Turnstile API
+
+    For more details on all available parameters, see the [Cloudflare documentation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#required-parameters)
     """
     url = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
 
