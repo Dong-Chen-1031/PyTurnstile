@@ -33,24 +33,7 @@
 
 PyTurnstile simplifies Cloudflare Turnstile token validation. It handles all communication with Cloudflare's API.
 
-```mermaid
-sequenceDiagram
-    participant Frontend as 🖥️ Frontend
-    participant Backend as 🐍 Your Backend
-    participant Cloudflare as ☁️ Cloudflare
-
-    Frontend->>Cloudflare: 1. Complete challenge
-    Cloudflare-->>Frontend: 2. Return token
-    Frontend->>Backend: 3. Submit form + token
-
-    rect rgb(50, 179, 238)
-        Note over Backend,Cloudflare: 🔍 PyTurnstile handles this
-        Backend->>Cloudflare: 4. Verify token
-        Cloudflare-->>Backend: 5. Valid ✅ / Invalid ❌
-    end
-
-    Backend->>Frontend: 6. Allow / Deny request
-```
+<img src="https://github.com/Dong-Chen-1031/pyturnstile/blob/main/img/sequence-diagram.png?raw=true" width="600" alt="Sequence diagram showing how PyTurnstile works" />
 
 > Learn more at: https://developers.cloudflare.com/turnstile/
 
@@ -84,10 +67,8 @@ PyTurnstile provides two ways to validate tokens:
 ```python
 from pyturnstile import Turnstile
 
-# Initialize with your secret key
 turnstile = Turnstile(secret="your-secret-key")
 
-# Validate a token (asynchronously)
 response = await turnstile.async_validate(token="user-token-from-frontend")
 
 # or validate synchronously
@@ -102,7 +83,6 @@ if response.success:
 ```python
 from pyturnstile import validate, async_validate
 
-# Validate a token (asynchronously)
 response = await async_validate(
     token="user-token-from-frontend",
     secret="your-secret-key"
@@ -125,10 +105,12 @@ if response.success:
 
 ```python
 response = turnstile.validate(
-    token="user-token",            # The token from the client-side widget
-    remoteip="203.0.113.1",        # Optional: visitor's IP address
-    idempotency_key="unique-uuid", # Optional: for retry protection
-    timeout=10                     # Optional: request timeout in seconds
+    token="user-token",               # The token from the client-side widget
+    idempotency_key="unique-uuid",    # Optional: UUID for retry protection
+    expected_remoteip="203.0.113.1",  # Optional: The visitor's IP address that the challenge response must match
+    expected_hostname="example.com",  # Optional: The hostname that the challenge response must match
+    expected_action="submit_form",    # Optional: The action identifier that the challenge must match
+    timeout=10                        # Optional: request timeout in seconds
 )
 ```
 
