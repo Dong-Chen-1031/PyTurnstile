@@ -22,7 +22,7 @@ class TestTurnstileResponse:
 
     def test_init_with_minimal_data(self):
         """Test initialization with minimal response data."""
-        response = TurnstileResponse({"success": True})  # ty:ignore[missing-typed-dict-key]
+        response = TurnstileResponse({"success": True})  # type: ignore
 
         assert response.success is True
         assert response.challenge_ts == ""
