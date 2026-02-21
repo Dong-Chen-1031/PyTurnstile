@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from . import _core
+from . import _core  # type: ignore
 
 
 class Turnstile:

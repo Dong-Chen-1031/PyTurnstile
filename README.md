@@ -53,6 +53,12 @@ sequenceDiagram
     Backend->>Frontend: 6. Allow / Deny request
 ```
 
+<details>
+<summary>If the diagram above doesn't load, click here</summary>
+<img src="https://github.com/Dong-Chen-1031/pyturnstile/blob/main/img/turnstile_verification.svg?raw=true" alt="Sequence diagram showing how PyTurnstile works" />
+</details>
+<br>
+
 > Learn more at: https://developers.cloudflare.com/turnstile/
 
 ## Installation

@@ -18,3 +18,11 @@ wheels/
 .idea/
 *.sublime-project
 *.sublime-workspace
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.cover
+coverage.xml

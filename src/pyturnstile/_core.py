@@ -6,11 +6,15 @@ from typing import Optional
 
 import httpx
 
-from ._types import TurnstileResponse, TurnstileResponseDict, TurnstileValidationError
+from ._types import (
+    TurnstileResponse,
+    TurnstileValidationError,
+    _TurnstileResponseDictCF,  # type: ignore
+)
 
 
 def _additional_validation(
-    response: dict,
+    response: _TurnstileResponseDictCF,
     expected_hostname: Optional[str],
     expected_action: Optional[str],
 ) -> TurnstileResponse:
@@ -18,26 +22,25 @@ def _additional_validation(
     Perform additional validation checks on the TurnstileResponse.
 
     Args:
-        response: The TurnstileResponse object to validate.
+        response: The raw response dictionary from the Turnstile API.
         expected_hostname: The expected hostname to match against the response.
         expected_action: The expected action identifier to match against the response.
     """
-    response_dict = TurnstileResponseDict(**response)
 
-    if not response_dict["success"]:
-        return TurnstileResponse(response_dict)
+    if not response["success"]:
+        return TurnstileResponse(response)
 
-    if expected_hostname and response_dict["hostname"] != expected_hostname:
-        response_dict["error_codes"] = ["hostname-mismatch"]
-        response_dict["success"] = False
-        return TurnstileResponse(response_dict)
+    if expected_hostname and response["hostname"] != expected_hostname:
+        response["error-codes"] = ["hostname-mismatch"]
+        response["success"] = False
+        return TurnstileResponse(response)
 
-    if expected_action and response_dict["action"] != expected_action:
-        response_dict["error_codes"] = ["action-mismatch"]
-        response_dict["success"] = False
-        return TurnstileResponse(response_dict)
+    if expected_action and response["action"] != expected_action:
+        response["error-codes"] = ["action-mismatch"]
+        response["success"] = False
+        return TurnstileResponse(response)
 
-    return TurnstileResponse(response_dict)
+    return TurnstileResponse(response)
 
 
 async def async_validate(

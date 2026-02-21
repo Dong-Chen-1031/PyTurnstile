@@ -1,6 +1,6 @@
 """Type definitions for PyTurnstile."""
 
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, Union
 
 
 class TurnstileValidationError(Exception):
@@ -25,16 +25,33 @@ For more details on all Turnstile error codes, see the [Cloudflare documentation
 """
 
 
-class TurnstileResponseDict(TypedDict):
-    """Type definition for the TurnstileResponse dictionary representation."""
+_TurnstileResponseDictCF = TypedDict(
+    "_TurnstileResponseDictCF",
+    {
+        "success": bool,
+        "action": str,
+        "cdata": str,
+        "challenge_ts": str,
+        "error-codes": Union[list[TurnstileErrorCodes], list[str]],
+        "hostname": str,
+        "metadata": dict[str, Any],
+    },
+)
+"""Type definition for the TurnstileResponse form Cloudflare's API response."""
 
-    success: bool
-    action: str
-    cdata: str
-    challenge_ts: str
-    error_codes: list[TurnstileErrorCodes] | list[str]
-    hostname: str
-    metadata: dict[str, Any]
+TurnstileResponseDict = TypedDict(
+    "TurnstileResponseDict",
+    {
+        "success": bool,
+        "action": str,
+        "cdata": str,
+        "challenge_ts": str,
+        "error_codes": Union[list[TurnstileErrorCodes], list[str]],
+        "hostname": str,
+        "metadata": dict[str, Any],
+    },
+)
+"""Type definition for the TurnstileResponse dictionary representation."""
 
 
 class TurnstileResponse:
@@ -63,7 +80,7 @@ class TurnstileResponse:
     success: bool
     """Boolean indicating if validation was successful"""
 
-    def __init__(self, data: dict | TurnstileResponseDict) -> None:
+    def __init__(self, data: TurnstileResponseDict | _TurnstileResponseDictCF) -> None:
         """
         Initialize the TurnstileResponse from the API response data.
         Args:
@@ -72,7 +89,7 @@ class TurnstileResponse:
         self.action = data.get("action", "")
         self.cdata = data.get("cdata", "")
         self.challenge_ts = data.get("challenge_ts", "")
-        self.error_codes = data.get("error-codes", [])
+        self.error_codes = data.get("error-codes", []) or data.get("error_codes", [])
         self.hostname = data.get("hostname", "")
         self.metadata = data.get("metadata", {})
         self.success = data.get("success", False)
@@ -114,4 +131,6 @@ __all__ = [
     "TurnstileResponse",
     "TurnstileValidationError",
     "TurnstileErrorCodes",
+    "TurnstileResponseDict",
+    "_TurnstileResponseDictCF",
 ]

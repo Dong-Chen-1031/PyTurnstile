@@ -45,8 +45,7 @@ jobs:
         run: uv run ruff format --check src/pyturnstile
 
       - name: Run tests
-        run: uv run pytest
-        continue-on-error: true # 當還沒有測試時允許失敗
+        run: uv run pytest --cov=src/pyturnstile --cov-report=term-missing
 
       - name: Build package
         run: uv build
