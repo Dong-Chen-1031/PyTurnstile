@@ -8,7 +8,8 @@ version = "0.5.1"
 description = "A Python library for validating Cloudflare Turnstile tokens with async and sync support"
 readme = "README_PYPI.md"
 requires-python = ">=3.8"
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 keywords = ["Cloudflare", "turnstile", "captcha", "validation"]
 authors = [
     { name = "Dong-Chen-1031", email = "dcdcdc1031@gmail.com" }
