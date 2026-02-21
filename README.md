@@ -8,6 +8,9 @@
 <a href="https://github.com/dong-chen-1031/pyturnstile/actions?query=workflow%3ATest+event%3Apush+branch%3Amain" target="_blank">
     <img src="https://github.com/dong-chen-1031/pyturnstile/actions/workflows/test.yml/badge.svg?event=push&branch=main" alt="Test">
 </a>
+<a href="https://codecov.io/github/Dong-Chen-1031/pyturnstile" > 
+ <img src="https://codecov.io/github/Dong-Chen-1031/pyturnstile/graph/badge.svg?token=8UXE73L2RO"/> 
+ </a>
 <a href="https://pypi.org/project/pyturnstile" target="_blank">
     <img src="https://img.shields.io/pypi/v/pyturnstile?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
