@@ -1,5 +1,7 @@
 """Tests for core validation functions."""
 
+from __future__ import annotations
+
 from pyturnstile._core import (
     _additional_validation,  # type: ignore
 )

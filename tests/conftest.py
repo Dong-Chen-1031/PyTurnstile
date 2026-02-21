@@ -1,5 +1,7 @@
 """Pytest configuration and shared fixtures."""
 
+from __future__ import annotations
+
 from typing import Any
 
 import pytest

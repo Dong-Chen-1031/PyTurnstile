@@ -1,5 +1,7 @@
 """Tests for type definitions and response objects."""
 
+from __future__ import annotations
+
 from pyturnstile._types import TurnstileResponse, TurnstileValidationError
 
 
