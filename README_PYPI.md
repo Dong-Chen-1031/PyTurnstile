@@ -74,10 +74,10 @@ from pyturnstile import Turnstile
 
 turnstile = Turnstile(secret="your-secret-key")
 
-response = await turnstile.async_validate(token="user-token-from-frontend")
+response = turnstile.validate(token="user-token-from-frontend")
 
-# or validate synchronously
-# response = turnstile.validate(token="user-token-from-frontend")
+# or validate asynchronously
+# response = turnstile.async_validate(token="user-token-from-frontend")
 
 if response.success:
     print("✅ Token is valid!")
@@ -88,13 +88,13 @@ if response.success:
 ```python
 from pyturnstile import validate, async_validate
 
-response = await async_validate(
+response = validate(
     token="user-token-from-frontend",
     secret="your-secret-key"
 )
 
-# or validate synchronously
-# response = validate(
+# or validate asynchronously
+# response = await async_validate(
 #     token="user-token-from-frontend",
 #     secret="your-secret-key"
 # )
